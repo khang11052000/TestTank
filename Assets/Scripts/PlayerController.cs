@@ -17,15 +17,12 @@ public class PlayerController : MonoBehaviour
     private float moveController;
     private float turnController;
 
-    [SerializeField] private float _moveSpeed;
-    [SerializeField] private float _turnSpeed;
+    [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] private float _turnSpeed = 100;
     
     // Start is called before the first frame update
     void Start()
     {
-        _moveSpeed = 5f;
-        _turnSpeed = 50f;
-        
         currentState = "idle";
         SetCharacterState(currentState);
     }
