@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 811983660}
   - component: {fileID: 811983659}
   - component: {fileID: 811983662}
+  - component: {fileID: 811983663}
   m_Layer: 0
   m_Name: B_Tank
   m_TagString: Untagged
@@ -380,7 +381,7 @@ MonoBehaviour:
   currentState: 
   currentAnimation: 
   _moveSpeed: 3.5
-  _turnSpeed: 400
+  _turnSpeed: 150
 --- !u!50 &811983659
 Rigidbody2D:
   serializedVersion: 4
@@ -486,6 +487,21 @@ MonoBehaviour:
   startPoint: {fileID: 262436562}
   bulletPrefab: {fileID: 5308299677094032022, guid: 9c09af963cf3a774aab827dbdb11ca10, type: 3}
   reloadDelay: 1
+--- !u!114 &811983663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811983653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338cabafe848d0c44ab5e7f25f4d50b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToPool: {fileID: 0}
+  poolSize: 10
+  spawnedObjectsParent: {fileID: 0}
 --- !u!1 &1060705165
 GameObject:
   m_ObjectHideFlags: 0

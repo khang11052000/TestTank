@@ -13,9 +13,19 @@ public class Shooting : MonoBehaviour
     private Collider2D[] tankColliders;
     private float currentDelay = 0;
 
+    private ObjectPool bulletPool;
+    [SerializeField] private int bulletPoolCount = 10;
+
     private void Awake()
     {
         tankColliders = GetComponentsInParent<Collider2D>();
+
+        bulletPool = GetComponent<ObjectPool>();
+    }
+
+    private void Start()
+    {
+        bulletPool.Initialize(bulletPrefab, bulletPoolCount);
     }
 
     private void Update()
@@ -44,7 +54,8 @@ public class Shooting : MonoBehaviour
             canShoot = false;
             currentDelay = reloadDelay;
 
-            GameObject bullet = Instantiate(bulletPrefab);
+            //GameObject bullet = Instantiate(bulletPrefab);
+            GameObject bullet = bulletPool.CreateObject();
             bullet.transform.position = startPoint.transform.position;
             bullet.transform.localRotation = startPoint.transform.rotation;
             bullet.GetComponent<Bullet>().Initialize();
