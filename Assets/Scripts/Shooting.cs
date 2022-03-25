@@ -8,24 +8,24 @@ public class Shooting : MonoBehaviour
     public GameObject startPoint;
     public GameObject bulletPrefab;
     public float reloadDelay = 1;
-
+    public float currentDelay = 0;
+    
     private bool canShoot = true;
-    private Collider2D[] tankColliders;
-    private float currentDelay = 0;
-
-    private ObjectPool bulletPool;
+    private Collider2D[] _tankColliders;
+    
+    private ObjectPool _bulletPool;
     [SerializeField] private int bulletPoolCount = 10;
 
     private void Awake()
     {
-        tankColliders = GetComponentsInParent<Collider2D>();
+        _tankColliders = GetComponentsInParent<Collider2D>();
 
-        bulletPool = GetComponent<ObjectPool>();
+        _bulletPool = GetComponent<ObjectPool>();
     }
 
     private void Start()
     {
-        bulletPool.Initialize(bulletPrefab, bulletPoolCount);
+        _bulletPool.Initialize(bulletPrefab, bulletPoolCount);
     }
 
     private void Update()
@@ -43,6 +43,7 @@ public class Shooting : MonoBehaviour
         {
             Shoot();
         }
+        
     }
     
     
@@ -55,15 +56,16 @@ public class Shooting : MonoBehaviour
             currentDelay = reloadDelay;
 
             //GameObject bullet = Instantiate(bulletPrefab);
-            GameObject bullet = bulletPool.CreateObject();
+            GameObject bullet = _bulletPool.CreateObject();
             bullet.transform.position = startPoint.transform.position;
             bullet.transform.localRotation = startPoint.transform.rotation;
             bullet.GetComponent<Bullet>().Initialize();
             
-            foreach (var collider in tankColliders)
+            foreach (var collider in _tankColliders)
             {
                 Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), collider);
             }
+            
         }
     }
 }
